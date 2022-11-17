@@ -1,7 +1,7 @@
 <template>
     <v-card class="d-flex flex-column justify-space-between align-center"  >
 
-        <v-img :src="`http://localhost:3001/static/${product_img}`"  >
+        <v-img :src="`http://localhost:3001/static/${product_img}`" max-height="300" >
             
         </v-img>
 
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    name: "Profile",
+    name: "Products",
     props: ["product_id", "product_name", "product_detail", "product_img", "critical", "min", "max", "barcode"]
 }
 </script>

@@ -1,9 +1,14 @@
 <template>
-  <v-row justify="center" align="center">
+
+    
+    <v-row justify="center" align="center">
+        
+        <topper 
+        title="Stock"
+        />
+    
     <v-col cols="12" sm="8" md="6">
-      <v-card class="py-4 d-flex justify-center">
-        <div class="white--text text-h1 font-weight-regular">Stock</div>
-      </v-card>
+      
 
       <v-card cols="12" sm="8" md="6" class="mt-12">
         <v-card-text>
@@ -63,8 +68,9 @@ export default {
 
   data() {
     return {
-      products: [],
-      headers: [
+        title:"Stock",
+        products: [],
+        headers: [
         {
           text: "Product_ID",
           align: "start",

@@ -1,91 +1,84 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
+
+    
+    
+  
+    
+
+    <v-bottom-navigation 
+    v-model="value" 
+    fixed 
+    app 
+    color="teal"
+    grow
+
+    
+
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
+
+
+    <v-btn value="dashboard"
+          to="/"
           router
           exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
+          
+
+    
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
+      <span>Dashboard</span>
+
+      <v-icon>mdi-file-document-outline</v-icon>
+    </v-btn>
+
+    <v-btn value="stock"
+    to="stock"
+    router
+    exact
+    >
+      <span>Stock</span>
+
+      <v-icon>mdi-package-variant-closed</v-icon>
+    </v-btn>
+
+
+    <v-btn value="scan">
+      <span>Order</span>
+
+      <v-icon>mdi-barcode-scan</v-icon>
+    </v-btn>
+
+
+
+    <v-btn value="order">
+      <span>Order</span>
+
+      <v-icon>mdi-cart-outline</v-icon>
+    </v-btn>
+
+    <v-btn value="singOut<">
+      <span>Sing Out</span>
+
+      <v-icon>mdi-microphone-variant</v-icon>
+    </v-btn>
+
+  </v-bottom-navigation>
+
+
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    
+   
+
+
+
   </v-app>
+
+  
+
 </template>
 
 <script>
@@ -93,6 +86,7 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
+      value: 'stock',
       clipped: false,
       drawer: false,
       fixed: false,
@@ -111,7 +105,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: '404'
     }
   }
 }
