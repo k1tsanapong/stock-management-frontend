@@ -6,11 +6,11 @@
         </v-img>
 
 
-<div class="mt-5 black--text text-h5 font-weight-regular">
+<div class="mt-5 black--text text-h4 font-weight-regular">
 {{product_name}}
 </div>
 
-<div class="my-10 red--text text-h3 font-weight-bold d-flex justify-center ">
+<div class="my-5 red--text text-h4 font-weight-bold d-flex justify-center ">
 1 Unit
 </div>
 </v-card>

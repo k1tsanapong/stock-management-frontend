@@ -18,7 +18,7 @@
     >
 
 
-    <v-btn value="dashboard"
+    <!-- <v-btn value="dashboard"
           to="/"
           router
           exact
@@ -29,7 +29,7 @@
       <span>Dashboard</span>
 
       <v-icon>mdi-file-document-outline</v-icon>
-    </v-btn>
+    </v-btn> -->
 
     <v-btn value="admin"
           to="/admin"

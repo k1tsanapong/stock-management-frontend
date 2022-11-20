@@ -2,11 +2,11 @@
   <v-container>
     
     <v-row class="my-5">
-      <v-col cols="4"></v-col>
+      <v-col cols="2" sm="4"></v-col>
       
 
      
-      <v-col cols="4" id="h_upload" >
+      <v-col cols="8" sm="4" id="h_upload" >
 
         <v-card outlined class="dropZone d-flex justify-center flex-column align-center rounded-xl">
           <v-img
@@ -41,7 +41,7 @@
 
 
 
-      <v-col cols="4"></v-col>
+      <v-col cols="2" sm="4"></v-col>
     </v-row>
 
     <v-form @submit.prevent="submit">
@@ -91,38 +91,38 @@
       </v-col>
     </v-row> -->
 
-    <v-row>
-      <v-col cols="2">
+    <v-row >
+      <v-col cols="3" sm="2">
         <div class="text-h5 font-weight-regular"> Critical </div>
       </v-col>
-      <v-col cols="10">
+      <v-col cols="12" sm="10">
         <v-text-field outlined type="number" v-model="critical"></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="2">
+      <v-col cols="3" sm="2">
         <div class="text-h5 font-weight-regular"> Min </div>
       </v-col>
-      <v-col cols="10">
+      <v-col cols="12" sm="10">
         <v-text-field outlined type="number" v-model="min"></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="2">
+      <v-col cols="3" sm="2">
         <div class="text-h5 font-weight-regular"> max </div>
       </v-col>
-      <v-col cols="10">
+      <v-col cols="12" sm="10">
         <v-text-field outlined type="number" v-model="max"></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="2">
+      <v-col cols="3" sm="2">
         <div class="text-h5 font-weight-regular"> barcode </div>
       </v-col>
-      <v-col cols="10">
+      <v-col cols="12" sm="10">
         <v-text-field outlined type="number" v-model="barcode"></v-text-field>
       </v-col>
     </v-row>

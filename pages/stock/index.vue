@@ -32,7 +32,7 @@
 
     </v-app-bar>
     
-    <v-col cols="6" style="margin-top: 90px;">
+    <v-col cols="12" sm="8" md="7" style="margin-top: 90px;">
 
       <v-col
         cols="12"
