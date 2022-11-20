@@ -173,21 +173,6 @@ export default {
 
       this.show = false;
 
-      // const formData = new FormData();
-      // formData.append("product_img", this.image);
-      // formData.append("product_name", this.product_name);
-      // formData.append("critical", this.critical);
-      // formData.append("min", this.min);
-      // formData.append("max", this.max);
-      // formData.append("barcode", this.barcode);
-      
-
-      // this.$axios
-      //   .$post("http://localhost:3001/products/upload", formData)
-      //   .then((res) => {
-      //     console.log(res);
-      //   });
-
     },
 
 

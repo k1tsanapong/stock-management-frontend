@@ -15,32 +15,6 @@
       </v-col>
     </v-row>
 
-    <!-- <v-row
-        v-for="(item, i) in warehouses"
-        :key="i"
-
-        >
-        <v-col cols="6"
-        >
-        <h1>{{item.warehouse_id}}</h1>
-        </v-col>
-
-        <v-col cols="6"
-        >
-        <h1>{{item.warehouse_name}}</h1>
-        </v-col>
-
-        </v-row> -->
-
-    <!-- <v-row>
-      <v-col cols="12">
-
-        <v-data-table :headers="headers" :items="warehouses" :items-per-page="5" class="elevation-1"></v-data-table>
-
-
-      </v-col>
-    </v-row> -->
-
     <v-row>
       <v-col cols="12">
         <v-data-table :headers="headers" :items="warehouses"
@@ -55,13 +29,23 @@
                   <v-icon>mdi-edit</v-icon>
                 </v-btn> -->
 
+                <!-- <v-btn
+                  color="blue-grey"
+                  class="ma-2 white--text"
+                  @click="onEdit(row.item)"
+                >
+                  <v-icon small> mdi-square-edit-outline</v-icon>
+                </v-btn> -->
+
                 <v-btn
                   color="blue-grey"
                   class="ma-2 white--text"
-                  @click="onButtonClick(row.item)"
+                  @click="onEdit(row.item)"
                 >
                   <v-icon small> mdi-square-edit-outline</v-icon>
                 </v-btn>
+
+
               </td>
 
               <td>
@@ -72,7 +56,7 @@
                 <v-btn
                   color="blue-grey"
                   class="ma-2 white--text"
-                  @click="onButtonClick(row.item)"
+                  @click="onDelete(row.item)"
                 >
                   <v-icon small> mdi-delete</v-icon>
                 </v-btn>
@@ -84,6 +68,75 @@
         </v-data-table>
       </v-col>
     </v-row>
+
+
+    <v-overlay
+      z-index="0"
+      :value="edit_overlay"
+      opacity="0.1"
+      style="cursor: pointer;"
+      
+    >
+      
+       <v-card
+       z-index="2" 
+       color="white" height="30vh" width="30vw"
+       class="d-flex align-center"
+       
+       >
+
+       <v-container>
+        <v-row>
+        <v-col
+        cols="1"
+        ></v-col>
+        <v-text-field background-color="grey" outlined ></v-text-field>
+        <v-col
+        cols="1"
+        ></v-col>
+       </v-row>
+
+
+        <v-row 
+        
+        >
+        <v-col 
+        class="d-flex justify-center"
+        cols="6"
+        >
+        
+        <v-btn
+        class="white--text"
+        color="teal"
+        @click="onEditYes()"
+      >
+        Yes
+      </v-btn>
+      
+        </v-col>
+
+        <v-col
+        class="d-flex justify-center"
+        cols="6"
+        >
+        
+        <v-btn
+        class="white--text"
+        color="teal"
+        @click="edit_overlay = false"
+      >
+        No
+      </v-btn>
+      
+        </v-col>
+
+      </v-row>
+       </v-container>
+       </v-card>
+      
+    </v-overlay>
+
+
   </v-container>
 </template>
   
@@ -95,6 +148,9 @@ export default {
 
   data() {
     return {
+      onOverlay_item:[],
+      edit_overlay: false,
+      // zIndex: 0,
       warehouses: [],
       headers: [
         {
@@ -102,9 +158,11 @@ export default {
           align: "start",
           // sortable: false,
           value: "warehouse_id",
-          width: "10%",
+          // width: "10%",
         },
-        { text: "Name", value: "warehouse_name", width: "15%" },
+        { text: "Name", value: "warehouse_name", 
+        // width: "15%" 
+      },
       ],
     };
   },
@@ -121,10 +179,25 @@ export default {
       console.log(getAllWarehouses.response);
       this.warehouses = getAllWarehouses.response;
     },
-    onButtonClick(item) {
-      console.log("click on " + item.warehouse_id);
+    onEdit(item) {
+      this.edit_overlay = true;
+      console.log("Edit on " + item.warehouse_id );
+      this.onOverlay_item = item.warehouse_id;
     },
+    onEditYes(){
+      this.edit_overlay = false;
+      console.log(this.onOverlay_item );
+    },
+
+    onDelete(item) {
+      console.log("Delete on " + item.warehouse_id);
+    },
+    
   },
 };
 </script>
+
+<style>
+
+</style>
   

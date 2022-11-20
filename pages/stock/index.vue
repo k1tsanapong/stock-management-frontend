@@ -1,13 +1,6 @@
 <template>
-
-    
-    <v-row justify="center" align="center">
-        
-      <v-app-bar
-    fixed 
-    height="100"
-    >
-
+  <v-row justify="center" align="center">
+    <v-app-bar fixed height="100">
       <v-col cols="8" class="mt-5">
         <v-card-text>
           <v-autocomplete
@@ -25,32 +18,20 @@
         </v-card-text>
       </v-col>
 
-      <v-btn to="/stock/new" large color="#20C997">
-        New
-      </v-btn>
-
-
+      <v-btn to="/stock/new" large color="#20C997"> New </v-btn>
     </v-app-bar>
-    
-    <v-col cols="12" sm="8" md="7" style="margin-top: 90px;">
 
-      <v-col
-        cols="12"
-        md="12"
-        class="d-flex flex-column justify-space-between "
-        
-      >
+    <v-col cols="12" sm="8" md="7" style="margin-top: 90px">
+      <v-col cols="12" md="12" class="d-flex flex-column justify-space-between">
         <Products
-        class="ma-5"
-        v-for="(item, i) in products"
-        :key="i"
-        :product_id="item.product_id"
-        :product_name="item.product_name"
-        :product_detail="item.product_detail"
-        :product_img="item.product_img"
-
+          class="ma-5"
+          v-for="(item, i) in products"
+          :key="i"
+          :product_id="item.product_id"
+          :product_name="item.product_name"
+          :product_detail="item.product_detail"
+          :product_img="item.product_img"
         />
-
       </v-col>
     </v-col>
   </v-row>
@@ -64,11 +45,11 @@ export default {
 
   data() {
     return {
-        searching:[],
-        find:"",
-        title:"Stock",
-        products: [],
-        headers: [
+      searching: [],
+      find: "",
+      title: "Stock",
+      products: [],
+      headers: [
         {
           text: "Product_ID",
           align: "start",
@@ -95,24 +76,15 @@ export default {
         "http://localhost:3001/products/"
       );
       this.products = allProducts.response;
-      
-      for (let key in this.products ) {
-    if (this.products.hasOwnProperty(key)) {
-        this.searching.push(this.products[key].product_name);
-    }
-}
-      
-    
+
+      for (let key in this.products) {
+        if (this.products.hasOwnProperty(key)) {
+          this.searching.push(this.products[key].product_name);
+        }
+      }
     },
 
-
-    getAllProductsName()
-    {
-      
-
-      
-    },
-
+    getAllProductsName() {},
   },
 };
 </script>
