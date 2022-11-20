@@ -3,14 +3,12 @@
     
     <v-row justify="center" align="center">
         
-        <topper 
-        title="Stock"
-        />
-    
-    <v-col cols="12" sm="8" md="6">
-      
+      <v-app-bar
+    fixed 
+    height="100"
+    >
 
-      <v-card cols="12" sm="8" md="6" class="mt-12">
+      <v-col cols="8" class="mt-5">
         <v-card-text>
           <v-autocomplete
             v-model="model"
@@ -25,18 +23,16 @@
             </template>
           </v-autocomplete>
         </v-card-text>
-      </v-card>
+      </v-col>
 
-      <!-- <v-card cols="12" sm="8" md="6" class="mt-12"> 
-    <template>
-  <v-data-table
-    :headers="headers"
-    :items="products"
-    :items-per-page="5"
-    class="elevation-1"
-  ></v-data-table>
-</template>
-  </v-card> -->
+      <v-btn large color="#20C997">
+        New
+      </v-btn>
+
+
+    </v-app-bar>
+    
+    <v-col cols="6" style="margin-top: 90px;">
 
       <v-col
         cols="12"

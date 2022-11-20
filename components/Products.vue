@@ -6,7 +6,7 @@
         </v-img>
 
 
-<div class="mt-5 white--text text-h5 font-weight-regular">
+<div class="mt-5 black--text text-h5 font-weight-regular">
 {{product_name}}
 </div>
 
