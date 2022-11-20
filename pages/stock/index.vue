@@ -11,8 +11,8 @@
       <v-col cols="8" class="mt-5">
         <v-card-text>
           <v-autocomplete
-            v-model="model"
-            :items="products"
+            v-model="find"
+            :items="searching"
             label="Search"
             persistent-hint
             prepend-icon="mdi-magnify"
@@ -25,7 +25,7 @@
         </v-card-text>
       </v-col>
 
-      <v-btn large color="#20C997">
+      <v-btn to="/stock/new" large color="#20C997">
         New
       </v-btn>
 
@@ -64,6 +64,8 @@ export default {
 
   data() {
     return {
+        searching:[],
+        find:"",
         title:"Stock",
         products: [],
         headers: [
@@ -84,6 +86,7 @@ export default {
 
   created() {
     this.getAllProducts();
+    this.getAllProductsName();
   },
 
   methods: {
@@ -92,7 +95,24 @@ export default {
         "http://localhost:3001/products/"
       );
       this.products = allProducts.response;
+      
+      for (let key in this.products ) {
+    if (this.products.hasOwnProperty(key)) {
+        this.searching.push(this.products[key].product_name);
+    }
+}
+      
+    
     },
+
+
+    getAllProductsName()
+    {
+      
+
+      
+    },
+
   },
 };
 </script>

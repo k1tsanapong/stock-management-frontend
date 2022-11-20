@@ -31,10 +31,23 @@
       <v-icon>mdi-file-document-outline</v-icon>
     </v-btn>
 
-    <v-btn value="stock"
-    to="stock"
-    router
-    exact
+    <v-btn value="admin"
+          to="/admin"
+          router
+          exact
+          
+
+    
+    >
+      <span>Admin</span>
+
+      <v-icon>mdi-account-tie</v-icon>
+    </v-btn>
+
+    <v-btn value=""
+    to="/stock"
+    
+    
     >
       <span>Stock</span>
 
