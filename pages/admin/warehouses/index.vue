@@ -104,7 +104,6 @@
           </v-row>
 
           <v-row>
-
             <v-col class="d-flex justify-center" cols="6">
               <v-btn
                 class="white--text"
@@ -120,8 +119,6 @@
                 Yes
               </v-btn>
             </v-col>
-
-            
           </v-row>
         </v-container>
       </v-card>
@@ -142,31 +139,29 @@
         class="d-flex align-center"
         style="cursor: default"
       >
+        <v-container class="black--text">
+          <v-row class="d-flex justify-center mb-10">
+            <h1>Do you want delete {{ this.onOverlay_name }}</h1>
+          </v-row>
 
-     <v-container class="black--text">
-      <v-row class="d-flex justify-center mb-10">
-        <h1>Do you want delete {{this.onOverlay_name}}</h1>
-      </v-row>
+          <v-row>
+            <v-col class="d-flex justify-center" cols="6">
+              <v-btn class="white--text" color="red" @click="onDeleteYes()">
+                Yes
+              </v-btn>
+            </v-col>
 
-      
-        <v-row>
-          <v-col class="d-flex justify-center" cols="6">
-            <v-btn class="white--text" color="red" @click="onDeleteYes()">
-              Yes
-            </v-btn>
-          </v-col>
-
-          <v-col class="d-flex justify-center" cols="6">
-            <v-btn
-              class="white--text"
-              color="teal"
-              @click="delete_overlay = false"
-            >
-              No
-            </v-btn>
-          </v-col>
-        </v-row>
-     </v-container>
+            <v-col class="d-flex justify-center" cols="6">
+              <v-btn
+                class="white--text"
+                color="teal"
+                @click="delete_overlay = false"
+              >
+                No
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card>
     </v-overlay>
   </v-container>
