@@ -9,13 +9,9 @@
     </v-app-bar>
 
     <v-row class="d-flex justify-center mt-10">
-      <v-col cols="6">
+      <v-col cols="12" sm="8" md="6">
         <v-card class="d-flex flex-column justify-space-between align-center">
-          <v-img
-          :src="this.img_url"
-            max-height="300"
-          >
-          </v-img>
+          <v-img :src="this.img_url" max-height="300"> </v-img>
 
           <div class="mt-5 black--text text-h4 font-weight-regular">
             {{ this.product.product_name }}
@@ -31,7 +27,7 @@
               justify-center
             "
           >
-            {{this.product.product_count}} Unit
+            {{ this.product.product_count }} Unit
           </div>
 
           <v-row class="mb-3">
@@ -52,7 +48,7 @@
     </v-row>
 
     <v-row class="d-flex justify-center mt-10">
-      <v-col cols="6">
+      <v-col cols="12" sm="8" md="6">
         <v-card>
           <v-card-text class="black--text text-subtitle-2 font-weight-regular">
             <v-icon class="mr-4" color="black">mdi-tag-outline</v-icon>
@@ -61,7 +57,6 @@
 
           <v-row>
             <v-col>
-
               <v-card-text
                 class="
                   d-flex
@@ -130,7 +125,7 @@ export default {
   data() {
     return {
       product: [],
-      img_url: '',
+      img_url: "",
     };
   },
 
@@ -145,8 +140,8 @@ export default {
       );
 
       this.product = oneProduct.response[0];
-      
-      this.img_url = "http://localhost:3001/static/" + this.product.product_img ;
+
+      this.img_url = "http://localhost:3001/static/" + this.product.product_img;
       console.log(this.product);
     },
   },
