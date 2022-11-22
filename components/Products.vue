@@ -1,5 +1,8 @@
 <template>
-  <v-card class="d-flex flex-column justify-space-between align-center">
+  <v-card :to="'stock/'+product_id"
+  
+  
+  class="d-flex flex-column justify-space-between align-center">
     <v-img
       :src="`http://localhost:3001/static/${product_img}`"
       max-height="300"
@@ -11,7 +14,7 @@
     </div>
 
     <div class="my-5 red--text text-h4 font-weight-bold d-flex justify-center">
-      1 Unit
+    {{product_count}} Unit
     </div>
   </v-card>
 </template>
@@ -28,6 +31,7 @@ export default {
     "min",
     "max",
     "barcode",
+    "product_count",
   ],
 };
 </script>

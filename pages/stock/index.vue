@@ -24,13 +24,16 @@
     <v-col cols="12" sm="8" md="7" style="margin-top: 90px">
       <v-col cols="12" md="12" class="d-flex flex-column justify-space-between">
         <Products
+          
           class="ma-5"
           v-for="(item, i) in products"
+          
           :key="i"
           :product_id="item.product_id"
           :product_name="item.product_name"
           :product_detail="item.product_detail"
           :product_img="item.product_img"
+          :product_count="item.product_count"
         />
       </v-col>
     </v-col>
@@ -67,7 +70,7 @@ export default {
 
   created() {
     this.getAllProducts();
-    this.getAllProductsName();
+    
   },
 
   methods: {
@@ -76,15 +79,17 @@ export default {
         "http://localhost:3001/products/"
       );
       this.products = allProducts.response;
+      this.getAllProductsName();
 
+    },
+
+    getAllProductsName() {
       for (let key in this.products) {
         if (this.products.hasOwnProperty(key)) {
           this.searching.push(this.products[key].product_name);
         }
       }
     },
-
-    getAllProductsName() {},
   },
 };
 </script>

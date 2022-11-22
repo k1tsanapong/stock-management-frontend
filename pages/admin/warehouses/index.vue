@@ -135,7 +135,7 @@
         z-index="2"
         color="white"
         height="20rem"
-        width="25rem"
+        width="30rem"
         class="d-flex align-center"
         style="cursor: default"
       >
