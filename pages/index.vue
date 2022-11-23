@@ -14,19 +14,18 @@ export default {
 
   data() {
     return {
-      // product_test:[]
+
+      
     };
   },
 
   created() {
-    // this.fetchSomething()
+
+    
   },
 
   methods: {
-    //   async fetchSomething() {
-    //   const ip = await this.$axios.$get('http://localhost:1337/api/product-types/1')
-    //   this.product_test = ip.data.attributes
-    // }
+   
   },
 };
 </script>

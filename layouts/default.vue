@@ -20,7 +20,7 @@
         <v-icon>mdi-account-tie</v-icon>
       </v-btn>
 
-      <v-btn value="" to="/stock">
+      <v-btn value="stock" to="/stock">
         <span>Stock</span>
 
         <v-icon>mdi-package-variant-closed</v-icon>
@@ -32,7 +32,7 @@
         <v-icon>mdi-barcode-scan</v-icon>
       </v-btn>
 
-      <v-btn value="order">
+      <v-btn value="order" to="/orders">
         <span>Order</span>
 
         <v-icon>mdi-cart-outline</v-icon>

@@ -92,7 +92,7 @@
         </v-col>
       </v-row>
 
-      <!-- <v-row>
+      <v-row>
         <v-col cols="3" sm="2">
           <div class="text-h5 font-weight-regular">Order</div>
         </v-col>
@@ -104,17 +104,17 @@
             v-model="order_input"
           ></v-select>
         </v-col>
-      </v-row> -->
+      </v-row>
 
       <v-row>
         <v-col cols="2">
-          <v-btn color="red" to="/admin/warehouses"> Back </v-btn>
+          <v-btn color="red" to="/admin/"> Back </v-btn>
         </v-col>
         <v-col class="ml-5" cols="2">
           <v-btn
             color="green"
             type="submit"
-            :disabled="warehouse_input == '' || quantity_input == ''"
+            :disabled="warehouse_input == '' || quantity_input == '' || date == null"
           >
             Add
           </v-btn>
@@ -129,9 +129,10 @@ export default {
   name: "newWarehouse",
   data() {
     return {
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
+      date:null,
+      // date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        // .toISOString()
+        // .substr(0, 10),
       menu: false,
 
       products:[],
@@ -147,7 +148,8 @@ export default {
       warehouses: [],
       warehouse_name: [],
       warehouse_id: [],
-      order: [],
+
+      orders: [],
       order_id: [],
 
 
@@ -157,27 +159,32 @@ export default {
   created() {
     this.getAllWarehouses();
     this.getAllProducts();
+    this.getAllOrders();
   },
 
   methods: {
 
-    // async getAllOrder() {
-    //   const getAllWarehouses = await this.$axios.$get(
-    //     "http://localhost:3001/warehouses"
-    //   );
-    //   this.warehouses = getAllWarehouses.response;
-    //   this.getAllOrderID();
-    // },
+    async getAllOrders() {
+      const allOrders = await this.$axios.$get(
+        "http://localhost:3001/orders/"
+      );
+      this.orders = allOrders.response;
+      
+      this.getAllOrdersID();
+     
 
-    // getAllOrderID() {
-    //   console.log(this.warehouses);
-    //   for (let key in this.warehouses) {
-    //     if (this.warehouses.hasOwnProperty(key)) {
-    //       this.warehouse_name.push(this.warehouses[key].warehouse_name);
-    //       this.warehouse_id.push(this.warehouses[key].warehouse_id);
-    //     }
-    //   }
-    // },
+      
+
+    },
+
+    getAllOrdersID() {
+      for (let key in this.orders) {
+        if (this.orders.hasOwnProperty(key)) {
+          this.order_id.push(this.orders[key].order_id);
+
+        }
+      }
+    },
 
     async getAllProducts() {
       const allProducts = await this.$axios.$get(
@@ -186,14 +193,17 @@ export default {
       this.products = allProducts.response;
       
       this.getAllProductsName();
+     
+
+      
 
     },
 
     getAllProductsName() {
       for (let key in this.products) {
         if (this.products.hasOwnProperty(key)) {
-          this.product_id.push(this.products[key].product_id);
-          this.product_name.push(this.products[key].product_name);
+          this.product_id.push(`${this.products[key].product_id}-${this.products[key].product_name}`);
+          // this.product_name.push(this.products[key].product_name);
 
         }
       }
@@ -205,39 +215,45 @@ export default {
       );
       this.warehouses = getAllWarehouses.response;
       this.getAllWarehouseName();
+
     },
 
     getAllWarehouseName() {
       for (let key in this.warehouses) {
         if (this.warehouses.hasOwnProperty(key)) {
-          this.warehouse_name.push(this.warehouses[key].warehouse_name);
-          this.warehouse_id.push(this.warehouses[key].warehouse_id);
+          this.warehouse_id.push(`${this.warehouses[key].warehouse_id}-${this.warehouses[key].warehouse_name}`);
+          // this.warehouse_name.push(this.warehouses[key].warehouse_name);
         }
       }
     },
 
-    checkid() {},
+    checkid(e) {
+      console.log(e);
+    },
 
     submit() {
       const formData = new FormData();
 
-      // const warehouse_index_input = this.warehouse_name.indexOf(
-      //   this.warehouse_input
-      // );
-      // console.log(warehouse_index_input);
-      // const warehouse_id_select = this.warehouse_id[warehouse_index_input];
-      formData.append("product_id", this.product_input);
+      const product_input_split = this.product_input.split("-");
+      const product_input_id = product_input_split[0];
+
+      const warehouse_input_split = this.warehouse_input.split("-");
+      const warehouse_input_id = warehouse_input_split[0];
+
+      
+
+      formData.append("product_id", product_input_id);
       formData.append("expire", this.date);
       console.log( this.date);
-      formData.append("warehouse_id", this.warehouse_input);
-      // formData.append("order_id", this.order_input);
-      formData.append("quantity", this.quantity_input);
+      formData.append("warehouse_id", warehouse_input_id);
+      formData.append("order_id", this.order_input);
+      formData.append("quantity_items", this.quantity_input);
 
 
       this.$axios
         .$post("http://localhost:3001/items/new", formData)
         .then((res) => {
-          this.$router.push("/NewItems");
+          this.$router.push("/admin");
           console.log(res);
         });
     },
