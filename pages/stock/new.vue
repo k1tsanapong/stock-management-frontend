@@ -121,20 +121,49 @@
       </v-row>
 
       <v-row>
-        <v-col cols="3" sm="2">
+        <v-col cols="4" sm="2">
           <div class="text-h5 font-weight-regular">barcode</div>
         </v-col>
-        <v-col cols="12" sm="10">
+        <v-col cols="9" sm="9">
           <v-text-field outlined type="number" v-model="barcode"></v-text-field>
+        </v-col>
+
+        <v-col cols="1">
+          <v-btn @click="onScan()" class="mt-3">
+            <v-icon large> mdi-barcode-scan </v-icon>
+          </v-btn>
         </v-col>
       </v-row>
 
       <v-row>
-        <v-col cols="2">
+        <v-col cols="1">
           <v-btn color="green" type="submit"> New </v-btn>
         </v-col>
       </v-row>
     </v-form>
+
+    <v-overlay
+      z-index="0"
+      :value="scan_overlay"
+      opacity="0.1"
+      style="cursor: pointer"
+    >
+      <v-card
+        v-click-outside="onClickOutside"
+        z-index="2"
+        color="white"
+        class="d-flex align-center"
+        style="cursor: default"
+      >
+        <v-container>
+          <StreamBarcodeReader
+            ref="scanner"
+            @decode="onDecode"
+            @loaded="onLoaded"
+          ></StreamBarcodeReader>
+        </v-container>
+      </v-card>
+    </v-overlay>
   </v-container>
 </template>
 
@@ -143,6 +172,8 @@ export default {
   name: "imageUpload",
   data() {
     return {
+      scan_overlay: false,
+
       previewImage: null,
       image: null,
       show: true,
@@ -185,6 +216,34 @@ export default {
           this.$router.push("/stock");
           console.log(res);
         });
+    },
+
+    onScan() {
+      this.scan_overlay = true;
+    },
+
+    onClickOutside() {
+      this.scan_overlay = false;
+      this.$refs.scanner.codeReader.stream
+        .getTracks()
+        .forEach(function (track) {
+          track.stop();
+        });
+    },
+
+    onDecode(text) {
+      console.log(`Decode text from QR code is ${text}`);
+
+      this.barcode = text;
+      this.scan_overlay = false;
+      this.$refs.scanner.codeReader.stream
+        .getTracks()
+        .forEach(function (track) {
+          track.stop();
+        });
+    },
+    onLoaded() {
+      console.log(`Ready to start scanning barcodes`);
     },
   },
 }; // missing closure added

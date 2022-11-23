@@ -26,8 +26,8 @@
         <v-icon>mdi-package-variant-closed</v-icon>
       </v-btn>
 
-      <v-btn value="scan">
-        <span>Order</span>
+      <v-btn value="scan" to="/scan">
+        <span>Scan</span>
 
         <v-icon>mdi-barcode-scan</v-icon>
       </v-btn>
