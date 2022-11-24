@@ -32,7 +32,7 @@
 
           <v-row class="mb-3">
             <v-col>
-              <v-btn color="teal"> <v-icon>mdi-plus</v-icon> </v-btn>
+              <v-btn @click="onNew()" color="teal"> <v-icon>mdi-plus</v-icon> </v-btn>
             </v-col>
 
             <v-col>
@@ -46,6 +46,68 @@
         </v-card>
       </v-col>
     </v-row>
+
+
+    <v-row class="d-flex justify-center mt-10">
+      <v-col cols="12" sm="8" md="6">
+        <v-card>
+          <v-card-text class="black--text text-subtitle-2 font-weight-regular">
+            <v-icon class="mr-4" color="black">mdi-text-box-check-outline</v-icon>
+            Detail
+          </v-card-text>
+
+          <v-row>
+            <v-col>
+
+              <v-card-text
+                class="
+                  
+                  black--text
+                  text-subtitle-2
+                  font-weight-regular
+                "
+              >
+              detail : {{this.product.product_detail}} 
+              </v-card-text>
+
+              <v-card-text
+                class="
+                  
+                  black--text
+                  text-subtitle-2
+                  font-weight-regular
+                "
+              >
+              barcode : {{this.product.barcode}} 
+              </v-card-text>
+
+              <v-card-text
+                class="
+                  
+                  black--text
+                  text-subtitle-2
+                  font-weight-regular
+                "
+              >
+
+              critical :  {{this.product.critical}} <br>
+              min : {{this.product.min}} <br>
+              max : {{this.product.max}} <br>
+                
+              </v-card-text>
+              
+              
+            </v-col>
+
+
+           
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+
+
+    <!-- ================================================================================== -->
 
     <v-row class="d-flex justify-center mt-10">
       <v-col cols="12" sm="8" md="6">
@@ -113,6 +175,30 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-overlay
+      z-index="0"
+      :value="new_overlay"
+      opacity="0.1"
+      style="cursor: pointer"
+    >
+      <v-card
+
+        z-index="2"
+        color="#757575"
+        height="80vh"
+        width="80vw"
+        class="d-flex align-center"
+        style="cursor: default"
+      >
+
+    <new-product-items
+    :product_id_props="this.product.product_id"
+    />
+
+      </v-card>
+      </v-overlay>
+
   </v-container>
 </template>
     
@@ -124,6 +210,7 @@ export default {
 
   data() {
     return {
+      new_overlay: false,
       product: [],
       img_url: "",
     };
@@ -134,14 +221,24 @@ export default {
   },
 
   methods: {
+
+    onNew()
+    {
+      this.new_overlay = true;
+    },
+
+    onClickOutside() {
+      this.new_overlay = false;
+    },
+
     async getOneProduct() {
       const oneProduct = await this.$axios.$get(
-        "http://localhost:3001/products/" + this.$route.params.id
+        "/products/" + this.$route.params.id
       );
 
       this.product = oneProduct.response[0];
 
-      this.img_url = "http://localhost:3001/static/" + this.product.product_img;
+      this.img_url = "https://sour20-back-end.onrender.com/static/" + this.product.product_img;
       console.log(this.product);
     },
   },

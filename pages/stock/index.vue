@@ -76,7 +76,7 @@ export default {
   methods: {
     async getAllProducts() {
       const allProducts = await this.$axios.$get(
-        "http://localhost:3001/products/"
+        "/products/"
       );
       this.products = allProducts.response;
       this.getAllProductsName();

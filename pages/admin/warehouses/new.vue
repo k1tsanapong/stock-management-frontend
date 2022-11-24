@@ -64,7 +64,7 @@ export default {
 
 
       this.$axios
-        .$post("http://localhost:3001/warehouses/new", formData)
+        .$post("/warehouses/new", formData)
         .then((res) => {
           this.$router.push("/admin/warehouses");
           console.log(res);

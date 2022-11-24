@@ -4,6 +4,12 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  server: {
+    // port: 3003, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
+
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - front-start',
@@ -48,7 +54,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    // baseURL: 'http://localhost:3001',
+    baseURL: 'https://sour20-back-end.onrender.com/',
+
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

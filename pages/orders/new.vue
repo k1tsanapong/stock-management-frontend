@@ -58,7 +58,7 @@ export default {
       formData.append("warehouse_detail", this.warehouse_detail);
 
       this.$axios
-        .$post("http://localhost:3001/warehouses/new", formData)
+        .$post("/warehouses/new", formData)
         .then((res) => {
           this.$router.push("/admin/warehouses");
           console.log(res);

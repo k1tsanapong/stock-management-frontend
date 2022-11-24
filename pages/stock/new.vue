@@ -211,7 +211,7 @@ export default {
       formData.append("barcode", this.barcode);
 
       this.$axios
-        .$post("http://localhost:3001/products/upload", formData)
+        .$post("/products/upload", formData)
         .then((res) => {
           this.$router.push("/stock");
           console.log(res);

@@ -4,7 +4,7 @@
   
   class="d-flex flex-column justify-space-between align-center">
     <v-img
-      :src="`http://localhost:3001/static/${product_img}`"
+      :src="`https://sour20-back-end.onrender.com/static/${product_img}`"
       max-height="300"
     >
     </v-img>

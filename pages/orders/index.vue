@@ -94,7 +94,7 @@ export default {
 
   methods: {
     async getAllOrders() {
-      const allOrders = await this.$axios.$get("http://localhost:3001/orders/");
+      const allOrders = await this.$axios.$get("/orders/");
       this.orders = allOrders.response;
 
       this.getAllOrdersID();

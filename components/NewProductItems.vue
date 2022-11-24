@@ -3,22 +3,7 @@
     <v-form @submit.prevent="submit">
 
 
-      <v-row>
-        <v-col cols="3" sm="2">
-          <div class="text-h5 font-weight-regular">Product</div>
-        </v-col>
-        <v-col cols="12" sm="10">
-          <v-select
-            :items="this.product_id"
-            outlined
-            required
-            v-model="product_input"
-          ></v-select>
-        </v-col>
-      </v-row>
-
-
-   
+ 
 
 
       <v-row class="" no-gutters>
@@ -108,7 +93,7 @@
 
       <v-row>
         <v-col cols="2">
-          <v-btn color="red" to="/admin/"> Back </v-btn>
+          <v-btn color="red" @click="offOverlay()"> Back </v-btn>
         </v-col>
         <v-col class="ml-5" cols="2">
           <v-btn
@@ -121,6 +106,9 @@
         </v-col>
       </v-row>
     </v-form>
+
+   
+
   </v-container>
 </template>
     
@@ -135,10 +123,8 @@ export default {
         // .substr(0, 10),
       menu: false,
 
-      products:[],
-      product_id: [],
-      product_name: [],
-      product_input: "",
+
+      product_input: this.product_id_props,
 
       quantity_input: "",
       expire_input: "",
@@ -158,11 +144,17 @@ export default {
 
   created() {
     this.getAllWarehouses();
-    this.getAllProducts();
     this.getAllOrders();
+    console.log(this.product_id_props);
   },
 
   methods: {
+
+    offOverlay()
+    {
+      this.$router.go(0);
+
+    },
 
     async getAllOrders() {
       const allOrders = await this.$axios.$get(
@@ -181,29 +173,6 @@ export default {
       for (let key in this.orders) {
         if (this.orders.hasOwnProperty(key)) {
           this.order_id.push(this.orders[key].order_id);
-
-        }
-      }
-    },
-
-    async getAllProducts() {
-      const allProducts = await this.$axios.$get(
-        "/products/"
-      );
-      this.products = allProducts.response;
-      
-      this.getAllProductsName();
-     
-
-      
-
-    },
-
-    getAllProductsName() {
-      for (let key in this.products) {
-        if (this.products.hasOwnProperty(key)) {
-          this.product_id.push(`${this.products[key].product_id}-${this.products[key].product_name}`);
-          // this.product_name.push(this.products[key].product_name);
 
         }
       }
@@ -234,15 +203,13 @@ export default {
     submit() {
       const formData = new FormData();
 
-      const product_input_split = this.product_input.split("-");
-      const product_input_id = product_input_split[0];
-
+      
       const warehouse_input_split = this.warehouse_input.split("-");
       const warehouse_input_id = warehouse_input_split[0];
 
       
 
-      formData.append("product_id", product_input_id);
+      formData.append("product_id", this.product_input);
       formData.append("expire", this.date);
       console.log( this.date);
       formData.append("warehouse_id", warehouse_input_id);
@@ -253,12 +220,18 @@ export default {
       this.$axios
         .$post("/items/new", formData)
         .then((res) => {
-          this.$router.push("/admin");
+          this.$router.push("/stock/"+this.product_input);
           console.log(res);
+          this.$router.go(0);
+
         });
     },
   },
-  
+
+  props: [
+    "product_id_props",
+    
+  ],
 }; // missing closure added
 </script>
     

@@ -212,7 +212,7 @@ export default {
   methods: {
     async getAllWarehouses() {
       const getAllWarehouses = await this.$axios.$get(
-        "http://localhost:3001/warehouses"
+        "/warehouses"
       );
       console.log(getAllWarehouses.response);
       this.warehouses = getAllWarehouses.response;
@@ -221,7 +221,7 @@ export default {
     updateOneWarehouse() {
       const updateOneWarehouse = this.$axios
         .$put(
-          "http://localhost:3001/warehouses/edit/" + this.onOverlay_id,
+          "/warehouses/edit/" + this.onOverlay_id,
           this.onOverlay_item
         )
         .then((res) => {
@@ -234,7 +234,7 @@ export default {
     deleteOneWarehouse() {
       const updateOneWarehouse = this.$axios
         .$delete(
-          `http://localhost:3001/warehouses/delete/${this.onOverlay_id}`,
+          `/warehouses/delete/${this.onOverlay_id}`,
           this.onOverlay_item
         )
         .then((res) => {
