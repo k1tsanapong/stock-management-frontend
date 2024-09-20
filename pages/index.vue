@@ -19,9 +19,8 @@ export default {
     };
   },
 
-  created() {
-
-    
+  mounted() {
+    this.$router.push("/stock");    
   },
 
   methods: {

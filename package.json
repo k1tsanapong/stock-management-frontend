@@ -20,6 +20,7 @@
     "vuetify": "^2.6.10"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.2",
     "@nuxtjs/vuetify": "^1.12.3"
   }
 }

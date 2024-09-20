@@ -1,12 +1,13 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
   server: {
-    // port: 3003, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    port: process.env.PORT || 3000,
+    host: process.env.HOST || 'localhost'
   },
 
 
@@ -49,13 +50,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'http://localhost:3001',
-    baseURL: 'https://sour20-back-end.onrender.com/',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3001'
 
   },
 
