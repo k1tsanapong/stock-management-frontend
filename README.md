@@ -1,4 +1,5 @@
-# front-start
+# Deploy
+https://stock-management-frontend-568599804906.asia-southeast1.run.app
 
 ## Build Setup
 
